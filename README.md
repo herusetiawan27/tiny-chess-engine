@@ -1,6 +1,6 @@
 # Tiny Chess Engine
 
-A compact chess engine in a single Python file (`main.py`, 4,093 bytes) for
+A compact chess engine in a single Python file (`main.py`, 3,913 bytes) for
 the [make.fun tiny-chess-01 bounty](https://make.fun/bounty/tiny-chess-01).
 
 It plays the full gauntlet protocol: it reads the environment URL from
@@ -17,7 +17,9 @@ node budget).
   clock, no unseeded randomness), a transposition table, null-move pruning,
   late-move reductions with re-search, a killer move and a history heuristic
   for move ordering, and a quiescence search over captures, promotions and
-  replies to check. Repetition and the 50-move rule score as draws.
+  replies to check, plus check extensions (the search goes one ply deeper
+  whenever the side to move is in check). Repetition and the 50-move rule
+  score as draws.
 - **Evaluation:** material (pawn 100, knight 320, bishop 330, rook 500, queen
   900) plus piece-square terms, pawn advancement and centralisation, bishop
   pair, rook on the 7th rank, and king centralisation only in a true
@@ -40,13 +42,13 @@ Measured with the kit's local grading harness on the three practice trials
 
 | trial | Elo | W–D–L |
 |-------|-----|-------|
-| 0 | 1364 | 3–1–2 |
-| 1 | 1191 | 2–1–3 |
-| 2 | 1279 | 3–0–3 |
-| **mean** | **1278** | **8–2–8** |
+| 0 | 1191 | 2–1–3 |
+| 1 | 1451 | 4–0–2 |
+| 2 | 1364 | 3–1–2 |
+| **mean** | **1335** | **9–2–7** |
 
 The house baseline (sunfish, 50,000 nodes/move) rates about 1,325 mean on
-the same practice trials.
+the same practice trials, so this version sits just above the baseline mean.
 
 [![make.fun · tiny-chess-01](https://make.fun/badge/tiny-chess-01.svg)](https://make.fun/bounty/tiny-chess-01?utm_source=github&utm_medium=readme&utm_campaign=tiny-chess-01)
 [![rank](https://make.fun/badge/tiny-chess-01/herusetiawan27/tiny-chess-engine/rank.svg)](https://make.fun/bounty/tiny-chess-01/leaderboard?utm_source=github&utm_medium=readme&utm_campaign=tiny-chess-01)
